@@ -9,7 +9,7 @@ public class CSVWritter {
 	public static void main(String[] args) {
 		BufferedWriter bw = null;
 		try {
-			File file = new File("[PATH-AL-ARCHIVO]/salida.csv");
+			File file = new File("dataset/salida1.csv");
 			if (!file.exists()) {
 				file.createNewFile();
 			}
