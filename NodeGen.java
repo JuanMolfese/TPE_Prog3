@@ -15,6 +15,20 @@ public class NodeGen {
         this.der = null;
     }
 
+    public ArrayList<Libro> getLibros() {
+        ArrayList<Libro>librosRespuesta = new ArrayList<>();
+        librosRespuesta.addAll(libros);
+        return librosRespuesta;
+    }
+
+    public ArrayList<String> getTitulosLibros(){
+        ArrayList<String>respuesta= new ArrayList<>();
+        for(Libro l : libros){
+            respuesta.add(l.getTitulo());
+        }
+        return respuesta;
+    }
+
     public void addLibro(Libro l){
         this.libros.add(l);
     }
