@@ -7,7 +7,9 @@ public class Main {
 
         Catalogo cat = new Catalogo();
         String genero_Buscar= JOptionPane.showInputDialog("Ingresa GENERO de los libros a buscar");
+        Timer t = new Timer();
+        t.start();
         cat.getLibrosGeneros(genero_Buscar);
-        JOptionPane.showMessageDialog(null, "Listo, anda a dormir !");
+        System.out.println(t.stop());
     }
 }
