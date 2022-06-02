@@ -11,13 +11,26 @@ public class Catalogo {
         this.generos = new IndiceGeneros();
     }
 
-    public void getLibrosGeneros(String g){
+    /**
+     * Dado un genero ingresado por parametro, genera un archivo .cvs
+     * con los titulos de los libros que poseen dicho genero
+     * y retorna la cantidad de itaraciones que realizó hasta encontrar
+     * el genero
+     * @return cantidad de iteraciones hasta encontrar el genero
+     * */
+    public int getLibrosGeneros(String g){
         obtenerDatos();
         ArrayList<String> titulosGenero = generos.getLibros(g);
-
         generarSalida(titulosGenero);
+        return generos.getIteracionesGenero();
     }
 
+    /**
+     * Genera un arbol de generos extraidos de un archivo
+     * .csv donde cada nodo tiene el nombre del genero y
+     * una referencia a la lista de los libros que tienen
+     * dicho genero
+     * */
     private void obtenerDatos(){
 
         String csvFile = "dataset/dataset1.csv";
@@ -48,7 +61,12 @@ public class Catalogo {
         }
     }
 
-    public void generarSalida(ArrayList<String> titulosLibros) {
+    /**
+     * Dado un arreglo de string recibido por parametro
+     * genera un archivo .cvs donde cada linea de este
+     * es un item del arreglo
+     * */
+    private void generarSalida(ArrayList<String> titulosLibros) {
         BufferedWriter bw = null;
         try {
             File file = new File("dataset/salida1.csv");
