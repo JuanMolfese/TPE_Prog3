@@ -33,7 +33,7 @@ public class Catalogo {
      * */
     private void obtenerDatos(){
 
-        String csvFile = "dataset/dataset1.csv";
+        String csvFile = "dataset/dataset2.csv";
         String line = "";
         String cvsSplitBy = ",";
         String catSplitBy = " ";

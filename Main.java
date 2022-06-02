@@ -9,7 +9,7 @@ public class Main {
         String genero_Buscar= JOptionPane.showInputDialog("Ingresa GENERO de los libros a buscar");
         Timer t = new Timer();
         t.start();
-        cat.getLibrosGeneros(genero_Buscar);
-        System.out.println(t.stop());
+        System.out.println("Cantidad de iteraciones para obtenes el genero: " + cat.getLibrosGeneros(genero_Buscar));
+        System.out.println("Tiempo transcurrido: " + t.stop());
     }
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class IndiceGeneros {
     private NodeGen root;
+    private int iteracionesGenero;
 
     public IndiceGeneros(){
         root = null;
@@ -43,7 +44,7 @@ public class IndiceGeneros {
     }
 
     public ArrayList<String> getLibros(String g){
-
+        this.iteracionesGenero = 0;
         if (this.root == null)
             return new ArrayList<>();
         else
@@ -53,7 +54,7 @@ public class IndiceGeneros {
     private ArrayList<String> getLibros(NodeGen actual, String g){
 
         ArrayList<String> respuesta= new ArrayList<>();
-
+        this.iteracionesGenero++;
         if(actual.getGenero().compareTo(g)==0) {
             respuesta.addAll(actual.getTitulosLibros());
         }
@@ -63,6 +64,10 @@ public class IndiceGeneros {
             respuesta.addAll(getLibros(actual.getRight(), g));
         }
         return respuesta;
+    }
+
+    public int getIteracionesGenero(){
+        return iteracionesGenero;
     }
 
     @Override
