@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class Catalogo {
 
     IndiceGeneros generos;
+    ArrayList<Libro> libros = new ArrayList<>();
 
     public Catalogo(){
         this.generos = new IndiceGeneros();
@@ -20,10 +21,20 @@ public class Catalogo {
      * */
     public int getLibrosGeneros(String g){
         obtenerDatos();
-        ArrayList<String> titulosGenero = generos.getLibros(g);
+        ArrayList<Libro> titulosGenero = generos.getLibros(g);
         generarSalida(titulosGenero);
         return generos.getIteracionesGenero();
     }
+
+    /**
+     *Se agrega metodo que devuelve lista completa de libros
+     */
+    public ArrayList<Libro> getLibros(){
+        ArrayList<Libro> copia = new ArrayList<>();
+        copia.addAll(libros);
+        return copia;
+    }
+
 
     /**
      * Genera un arbol de generos extraidos de un archivo
@@ -37,7 +48,6 @@ public class Catalogo {
         String line = "";
         String cvsSplitBy = ",";
         String catSplitBy = " ";
-        ArrayList<Libro> libros = new ArrayList<>();
 
         try (
         BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
@@ -66,7 +76,8 @@ public class Catalogo {
      * genera un archivo .cvs donde cada linea de este
      * es un item del arreglo
      * */
-    private void generarSalida(ArrayList<String> titulosLibros) {
+
+    private void generarSalida(ArrayList<Libro> titulosLibros) {
         BufferedWriter bw = null;
         try {
             File file = new File("dataset/salida1.csv");
@@ -77,8 +88,8 @@ public class Catalogo {
             FileWriter fw = new FileWriter(file);
             bw = new BufferedWriter(fw);
 
-            for(String s : titulosLibros){
-                String contenidoLinea = s;
+            for(Libro s : titulosLibros){
+                String contenidoLinea = s.getTitulo();
                 bw.write(contenidoLinea);
                 bw.newLine();
             }

@@ -43,7 +43,7 @@ public class IndiceGeneros {
         }
     }
 
-    public ArrayList<String> getLibros(String g){
+    public ArrayList<Libro> getLibros(String g){
         this.iteracionesGenero = 0;
         if (this.root == null)
             return new ArrayList<>();
@@ -51,20 +51,18 @@ public class IndiceGeneros {
             return this.getLibros(this.root, g);
     }
 
-    private ArrayList<String> getLibros(NodeGen actual, String g){
-
-        ArrayList<String> respuesta= new ArrayList<>();
+    private ArrayList<Libro> getLibros(NodeGen actual, String g) {
         this.iteracionesGenero++;
-        if(actual.getGenero().compareTo(g)==0) {
-            respuesta.addAll(actual.getTitulosLibros());
+        if (actual.getGenero().compareTo(g) == 0) {
+            return actual.getLibros();
+        } else if ((actual.getGenero().compareTo(g) > 0) && (actual.getLeft() != null)) {
+            return getLibros(actual.getLeft(), g);
+        } else if ((actual.getGenero().compareTo(g) < 0) && (actual.getRight() != null)) {
+            return getLibros(actual.getRight(), g);
         }
-        else if ((actual.getGenero().compareTo(g) > 0) && (actual.getLeft()!=null)) {
-            respuesta.addAll(getLibros(actual.getLeft(),g));
-        }else if((actual.getGenero().compareTo(g) < 0) && (actual.getRight()!=null)) {
-            respuesta.addAll(getLibros(actual.getRight(), g));
-        }
-        return respuesta;
+        return new ArrayList<Libro>();
     }
+
 
     public int getIteracionesGenero(){
         return iteracionesGenero;
